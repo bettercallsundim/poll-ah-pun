@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "frontend": "cd packages/frontend && bun run dev",
+    "backend": "cd packages/backend && bun run dev",
+    "dev": "concurrently \"bun run backend\" \"bun run frontend\""
+  },
+  "workspaces": [
+    "packages/frontend",
+    "packages/backend"
+  ]
+}
