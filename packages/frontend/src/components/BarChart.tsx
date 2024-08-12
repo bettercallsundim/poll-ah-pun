@@ -1,26 +1,39 @@
 import myAxios from "@/lib/axios";
+import { Option as OptionType } from "@prisma/client";
 import { AnimatePresence, motion } from "framer-motion";
 
-const options = [
-  {
-    option: "The first option",
-    votes: 10,
-  },
-  {
-    option: "The first option",
-    votes: 30,
-  },
-  {
-    option: "The first option",
-    votes: 50,
-  },
-  {
-    option: "The first option",
-    votes: 70,
-  },
-];
-const BarChart = ({ poll, polls, setPolls }) => {
-  async function handleVote(option, ind) {
+interface PollOption {
+  id: number;
+  option: string;
+  votes: VoteType[];
+  percentage?: number; // optional if percentage is not always present
+}
+
+interface PollTypeResponse {
+  id: number;
+  title: string;
+  description: string;
+  totalVotes: number;
+  options: PollOption[];
+}
+
+interface VoteType {
+  id: number;
+  ipId: number;
+  pollId: number;
+  optionId: number;
+  createdAt: string; // or Date type if preferred
+  updatedAt: string; // or Date type if preferred
+}
+const BarChart = ({
+  poll,
+  setPolls,
+}: {
+  poll: PollTypeResponse;
+  polls: PollTypeResponse[];
+  setPolls: React.Dispatch<React.SetStateAction<PollTypeResponse[]>>;
+}) => {
+  async function handleVote(option: OptionType, ind: number) {
     console.log(option, "hiiiii");
     await myAxios
       .post("/poll/vote/" + poll.id + "/" + option.id)
@@ -29,8 +42,9 @@ const BarChart = ({ poll, polls, setPolls }) => {
         setPolls((prev) => {
           const newPolls = [...prev];
           const newPollIndex = newPolls.findIndex((p) => p.id == poll.id);
-          let newPoll = newPolls[newPollIndex];
+          const newPoll: PollTypeResponse = newPolls[newPollIndex];
           console.log("🚀 ~ setPolls ~ newPoll:", newPoll);
+          // @ts-expect-error gonna fix this later
           newPoll.options[ind].votes.push({});
           newPoll.totalVotes += 1;
           newPoll.options.forEach((option, ind) => {
@@ -59,6 +73,7 @@ const BarChart = ({ poll, polls, setPolls }) => {
               duration: 0.25,
             }}
             className="mb-4 cursor-pointer rounded p-2"
+            // @ts-expect-error gonna fix this later
             onClick={() => handleVote(option, ind)}
             key={option.id}
           >
@@ -81,6 +96,7 @@ const BarChart = ({ poll, polls, setPolls }) => {
                   }}
                 ></motion.div>
               </div>
+              {/* @ts-expect-error gonna fix this later */}
               <span>{parseInt(option.percentage).toFixed(2)}%</span>
             </div>
           </motion.div>

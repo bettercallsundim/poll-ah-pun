@@ -1,19 +1,41 @@
-import { Poll as PollType } from "@prisma/client";
-import React, { createContext, useContext } from "react";
+import React, { createContext } from "react";
 
 import BarChart from "./BarChart";
-
-const PollContext = createContext<PollType | undefined>(undefined);
-function GetPollContext() {
-  return useContext(PollContext);
+interface PollOption {
+  id: number;
+  option: string;
+  votes: VoteType[];
+  percentage?: number; // optional if percentage is not always present
 }
+
+interface PollTypeResponse {
+  id: number;
+  title: string;
+  description: string;
+  totalVotes: number;
+  options: PollOption[];
+}
+
+interface VoteType {
+  id: number;
+  ipId: number;
+  pollId: number;
+  optionId: number;
+  createdAt: string; // or Date type if preferred
+  updatedAt: string; // or Date type if preferred
+}
+const PollContext = createContext<PollTypeResponse | undefined>(undefined);
+// function GetPollContext() {
+//   return useContext(PollContext);
+// }
 const Poll = ({
   children,
   poll,
   ...props
 }: {
   children: React.ReactNode;
-  poll: PollType;
+  poll: PollTypeResponse;
+  [key: string]: unknown;
 }) => {
   return (
     <PollContext.Provider value={poll}>
@@ -40,9 +62,9 @@ Poll.Chart = ({
   polls,
   setPolls,
 }: {
-  poll: PollType;
-  polls: PollType[];
-  setPolls: React.Dispatch<React.SetStateAction<PollType[]>>;
+  poll: PollTypeResponse;
+  polls: PollTypeResponse[];
+  setPolls: React.Dispatch<React.SetStateAction<PollTypeResponse[]>>;
 }) => {
   return <BarChart poll={poll} polls={polls} setPolls={setPolls} />;
 };
