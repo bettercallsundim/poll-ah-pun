@@ -5,6 +5,9 @@
     "backend": "cd packages/backend && bun run dev",
     "dev": "concurrently \"bun run backend\" \"bun run frontend\""
   },
+  "dependencies": {
+    "@prisma/client": "5.17.0"
+  },
   "workspaces": [
     "packages/frontend",
     "packages/backend"
