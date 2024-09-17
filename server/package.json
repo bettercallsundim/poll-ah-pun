@@ -7,7 +7,7 @@
     "devss": "concurrently \"tsc --watch\" \"bun --smol --watch dist/server.js\"",
     "dev": "bun --watch src/server.ts",
     "start": "node dist/server.js",
-    "build": "tsc"
+    "build": "prisma generate && tsc"
   },
   "keywords": [],
   "author": "",
