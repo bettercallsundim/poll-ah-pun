@@ -28,15 +28,15 @@ const CreatePoll = () => {
   return (
     <div>
       <div className="grid max-w-[500px] gap-1.5">
-        <Label htmlFor="message-2">Your Message</Label>
+        <Label htmlFor="message-2 mb-4">Create your poll</Label>
         <Textarea
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Type your message here."
+          placeholder="Describe what's your poll about"
           id="message-2"
         />
         <p className="text-sm text-muted-foreground">
-          Your message will be copied to the support team.
+          Add minimum 2 / maximum 4 options
         </p>
         <div className="flex flex-col gap-y-4">
           {options?.map((option, ind) => (

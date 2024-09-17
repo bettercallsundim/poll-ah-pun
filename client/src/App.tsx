@@ -46,7 +46,7 @@ function App() {
         <CreatePoll />
       </div>
       <div className="text-2xl font-bold my-4">Polls</div>
-      <div className="grid grid-cols-3  flex-wrap gap-y-8 gap-x-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  flex-wrap gap-y-8 gap-x-4">
         {polls.map((poll: PollTypeResponse) => {
           return (
             <Poll

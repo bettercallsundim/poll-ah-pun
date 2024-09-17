@@ -69,7 +69,11 @@ export function Nav() {
   return (
     <NavigationMenu className="justify-between px-8 py-4 shadow mb-8">
       <div className="flex items-center justify-between w-full">
-        <NavigationMenuList>Poll-ah-Pun</NavigationMenuList>
+        <NavigationMenuList>
+          <span className="text-primary font-extrabold text-2xl">
+            Poll-ah-Pun
+          </span>
+        </NavigationMenuList>
         {isMobile && (
           <NavigationMenuList className="md:hidden">
             <MobileMenu />
