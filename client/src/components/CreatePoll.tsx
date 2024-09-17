@@ -25,6 +25,7 @@ const CreatePoll = () => {
         setTitle("");
       });
   }
+
   return (
     <div>
       <div className="grid max-w-[500px] gap-1.5">
