@@ -1,5 +1,4 @@
 import myAxios from "@/lib/axios";
-import { Option as OptionType } from "@prisma/client";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface PollOption {
@@ -33,9 +32,10 @@ const BarChart = ({
   polls: PollTypeResponse[];
   setPolls: React.Dispatch<React.SetStateAction<PollTypeResponse[]>>;
 }) => {
-  async function handleVote(option: OptionType, ind: number) {
+  async function handleVote(option: unknown, ind: number) {
     console.log(option, "hiiiii");
     await myAxios
+      // @ts-expect-error gonna fix this later
       .post("/poll/vote/" + poll.id + "/" + option.id)
       .then((res) => {
         console.log(res);
@@ -73,7 +73,6 @@ const BarChart = ({
               duration: 0.25,
             }}
             className="mb-4 cursor-pointer rounded p-2"
-            // @ts-expect-error gonna fix this later
             onClick={() => handleVote(option, ind)}
             key={option.id}
           >

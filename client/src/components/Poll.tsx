@@ -44,7 +44,7 @@ const Poll = ({
   );
 };
 
-Poll.Heading = ({ img }: { img: string }) => {
+Poll.Heading = () => {
   return (
     <div className="flex items-center gap-x-4 mb-6">
       <img

@@ -54,7 +54,7 @@ function App() {
               poll={poll}
               className="w-[400px] min-h-[400px] rounded-md shadow-md  p-8 bg-gradient-to-b from-muted/50 to-muted border "
             >
-              <Poll.Heading img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfVDpdwIqq-JPXXlOTDUQwJkZUKQpDYf8JOw&s" />
+              <Poll.Heading />
 
               <Poll.Title>{poll.title}</Poll.Title>
               <Poll.Chart poll={poll} polls={polls} setPolls={setPolls} />
