@@ -43,6 +43,7 @@ const Poll = ({
     </PollContext.Provider>
   );
 };
+// @ts-expect-error gonna fix this later
 
 Poll.Heading = ({ poll }) => {
   return (

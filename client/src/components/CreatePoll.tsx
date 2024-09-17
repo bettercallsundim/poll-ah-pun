@@ -6,7 +6,9 @@ import myAxios from "@/lib/axios";
 import { useState } from "react";
 
 type Option = string;
-const CreatePoll = ({ polls, setPolls }) => {
+
+// @ts-expect-error gonna fix this later
+const CreatePoll = ({ setPolls }) => {
   const [options, setOptions] = useState<Option[] | []>([]);
   const [title, setTitle] = useState("");
 
@@ -24,6 +26,7 @@ const CreatePoll = ({ polls, setPolls }) => {
         console.log("🚀 ~ .then ~ res:", res);
         setOptions([]);
         setTitle("");
+        // @ts-expect-error gonna fix this later
         setPolls((prev) => [res.data.data, ...prev]);
       });
   }
