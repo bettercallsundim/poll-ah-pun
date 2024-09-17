@@ -44,12 +44,12 @@ const Poll = ({
   );
 };
 
-Poll.Heading = () => {
+Poll.Heading = ({poll}) => {
   return (
     <div className="flex items-center gap-x-4 mb-6">
       <img
         className="w-16 h-16 rounded-full"
-        src={`https://api.dicebear.com/9.x/pixel-art/svg?seed=${new Date().toISOString()}`}
+        src={`https://api.dicebear.com/9.x/pixel-art/svg?seed=${poll.authorId}`}
         alt=""
       />
       <span>Anonymus Member</span>

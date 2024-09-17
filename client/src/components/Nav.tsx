@@ -74,11 +74,19 @@ export function Nav() {
             Poll-ah-Pun
           </span>
         </NavigationMenuList>
+
+        <NavigationMenuList className="">
+          <NavigationMenuItem>
+            <ThemeToggle />
+          </NavigationMenuItem>
+        </NavigationMenuList>
+
         {isMobile && (
           <NavigationMenuList className="md:hidden">
             <MobileMenu />
           </NavigationMenuList>
         )}
+
         {!isMobile && (
           <NavigationMenuList className="relative">
             <NavigationMenuItem>
@@ -140,9 +148,6 @@ export function Nav() {
                   Documentation
                 </NavigationMenuLink>
               </a>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <ThemeToggle />
             </NavigationMenuItem>
           </NavigationMenuList>
         )}

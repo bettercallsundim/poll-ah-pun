@@ -23,7 +23,7 @@ export const createPoll = asyncHandler(
         }
         if (existsIp) {
           // Create the poll
-          const newPoll = await db.poll.create({
+          let newPoll = await db.poll.create({
             data: {
               title,
               description,
@@ -35,10 +35,26 @@ export const createPoll = asyncHandler(
               },
             },
             include: {
-              options: true,
+              options: {
+                include: {
+                  votes: true, // Include votes for each option
+                },
+              },
+              author: true,
+              votes: true, // This includes votes for the poll itself, but it's redundant in this case
             },
           });
-          res.status(201).json({ data: newPoll });
+
+          res.status(201).json({
+            data: {
+              ...newPoll,
+              options: newPoll.options.map((option) => ({
+                ...option,
+                percentage: 0,
+              })),
+              totalVotes: 0,
+            },
+          });
         }
       } else {
         throw new OhError(400, "error.message");

@@ -37,7 +37,9 @@ function App() {
       })
       .then((res) => {
         console.log("🚀 ~ awaitmyAxios.get ~ res:", res);
-        setPolls(res.data.data);
+        const responsePolls = res.data.data;
+        responsePolls.reverse();
+        setPolls(responsePolls);
       });
   }
   useEffect(() => {
@@ -47,7 +49,7 @@ function App() {
   return (
     <div>
       <div>
-        <CreatePoll />
+        <CreatePoll polls={polls} setPolls={setPolls} />
       </div>
       <div className="text-2xl font-bold my-4">Polls</div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  flex-wrap gap-y-8 gap-x-4">
@@ -58,7 +60,7 @@ function App() {
               poll={poll}
               className="w-[400px] min-h-[400px] rounded-md shadow-md  p-8 bg-gradient-to-b from-muted/50 to-muted border "
             >
-              <Poll.Heading />
+              <Poll.Heading poll={poll} />
 
               <Poll.Title>{poll.title}</Poll.Title>
               <Poll.Chart poll={poll} polls={polls} setPolls={setPolls} />

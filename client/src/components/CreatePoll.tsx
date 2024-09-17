@@ -6,7 +6,7 @@ import myAxios from "@/lib/axios";
 import { useState } from "react";
 
 type Option = string;
-const CreatePoll = () => {
+const CreatePoll = ({ polls, setPolls }) => {
   const [options, setOptions] = useState<Option[] | []>([]);
   const [title, setTitle] = useState("");
 
@@ -20,15 +20,17 @@ const CreatePoll = () => {
         description: title,
         options,
       })
-      .then(() => {
+      .then((res) => {
+        console.log("🚀 ~ .then ~ res:", res);
         setOptions([]);
         setTitle("");
+        setPolls((prev) => [res.data.data, ...prev]);
       });
   }
 
   return (
-    <div>
-      <div className="grid max-w-[500px] gap-1.5">
+    <div className="border-b mb-12">
+      <div className="grid max-w-2xl gap-1.5 border border-slate-200 px-12 py-8 rounded-xl mb-8">
         <Label htmlFor="message-2 mb-4">Create your poll</Label>
         <Textarea
           value={title}
