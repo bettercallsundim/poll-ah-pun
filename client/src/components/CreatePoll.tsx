@@ -30,7 +30,7 @@ const CreatePoll = ({ polls, setPolls }) => {
 
   return (
     <div className="border-b mb-12">
-      <div className="grid max-w-2xl gap-1.5 border border-slate-200 px-12 py-8 rounded-xl mb-8">
+      <div className="grid max-w-2xl gap-1.5 md:border md:border-slate-200 md:px-12 md:py-8 rounded-xl mb-8">
         <Label htmlFor="message-2 mb-4">Create your poll</Label>
         <Textarea
           value={title}

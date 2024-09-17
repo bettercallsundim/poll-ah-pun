@@ -58,7 +58,7 @@ function App() {
             <Poll
               key={poll.id}
               poll={poll}
-              className="w-[400px] min-h-[400px] rounded-md shadow-md  p-8 bg-gradient-to-b from-muted/50 to-muted border "
+              className="max-w-[400px] min-h-[400px] rounded-md shadow-md  p-6 md:p-8 bg-gradient-to-b from-muted/50 to-muted border "
             >
               <Poll.Heading poll={poll} />
 

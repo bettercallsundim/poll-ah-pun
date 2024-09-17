@@ -67,7 +67,7 @@ export function Nav() {
     query: "(max-width: 720px)",
   });
   return (
-    <NavigationMenu className="justify-between px-8 py-4 shadow mb-8">
+    <NavigationMenu className="justify-between md:px-8 py-4 shadow mb-8">
       <div className="flex items-center justify-between w-full">
         <NavigationMenuList>
           <span className="text-primary font-extrabold text-2xl">
