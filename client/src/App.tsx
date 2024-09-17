@@ -31,10 +31,14 @@ function App() {
   const [polls, setPolls] = useState<PollTypeResponse[] | []>([]);
 
   async function getPolls() {
-    await myAxios.get("/poll/all").then((res) => {
-      console.log("🚀 ~ awaitmyAxios.get ~ res:", res);
-      setPolls(res.data.data);
-    });
+    await myAxios
+      .get("/poll/all", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log("🚀 ~ awaitmyAxios.get ~ res:", res);
+        setPolls(res.data.data);
+      });
   }
   useEffect(() => {
     getPolls();
