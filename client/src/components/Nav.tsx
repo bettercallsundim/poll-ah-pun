@@ -76,19 +76,15 @@ export function Nav() {
         </NavigationMenuList>
 
         <NavigationMenuList className="">
-          <NavigationMenuItem>
-            <ThemeToggle />
-          </NavigationMenuItem>
+          {isMobile && <ThemeToggle />}
+          {isMobile && <MobileMenu />}
         </NavigationMenuList>
-
-        {isMobile && (
-          <NavigationMenuList className="md:hidden">
-            <MobileMenu />
-          </NavigationMenuList>
-        )}
 
         {!isMobile && (
           <NavigationMenuList className="relative">
+            <NavigationMenuItem>
+              {!isMobile && <ThemeToggle />}
+            </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
               <NavigationMenuContent>

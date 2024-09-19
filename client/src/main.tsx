@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-    <div className="px-8 pb-4 max-w-screen-2xl mx-auto">
+    <div className="px-4 md:px-8 pb-4 max-w-screen-2xl mx-auto">
       <Nav />
       <RouterProvider router={router} />
     </div>
